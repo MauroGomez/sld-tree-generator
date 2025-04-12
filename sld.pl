@@ -59,16 +59,16 @@
 % some examples
 % ------------------------------------------------------------------------------
 %
-%   1) Programm laden.
+%   1) Load the program.
 %          ?- [sld].
 %
-%   2) loading clauses for built-in predicates:
+%   2) Load clauses for built-in predicates:
 %          ?- loadbi.
 %
-%   3) Das Eingabeprogramm laden.
+%   3) Load the input program.
 %          ?- load_program('test.pl').
 %
-%   4) SLD-Baeume berechnen.
+%   4) Compute SLD trees.
 %          ?- sld_tree('a(1,X)',T),print_tree(T).
 %          ?- sld_tree('z(R),z(S),g(R,S)',T),print_tree(T).
 %

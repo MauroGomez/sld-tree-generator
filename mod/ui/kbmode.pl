@@ -78,7 +78,7 @@ inkey(C):-
     get_single_char(C).
 
 % --------------------------------------------------------------------
-% Interaktiv
+% Interactive
 % --------------------------------------------------------------------
 
 run_escape_seq([113|_],Tree,CurrentNode,_Result,_Depth,Tree,CurrentNode):-nl.

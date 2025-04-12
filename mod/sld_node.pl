@@ -35,10 +35,30 @@
            to_unbounded_term/3,
            test_goal/2]).
 
+goalsToFlatList((A,B), LAB):-
+    !,
+    goalsToFlatList(A, LA),
+    goalsToFlatList(B, LB),
+    append(LA, LB, LAB).
+goalsToFlatList(A, [A]).
+
+listToGoals([X], X):- !.
+listToGoals([X|Xs], (X,Gs)):-
+    listToGoals(Xs, Gs).
+
+/**
+ * Flatten goals nesting so you can get the first and rest of the goals
+ * by doing NormGoals = (FirstGoal, RestGoals). 
+ * /
+normalizeGoals(Goals, NormGoals):-
+    goalsToFlatList(Goals, GoalsFlatList),    
+    listToGoals(GoalsFlatList, NormGoals).    
+
 % ------------------------------------------------------------------------------
-% Erstes Ziel aus einer Anfrage (Konjunktionsterm) ermitteln.
+% Determine the first goal from a query (conjunction term).
 % ------------------------------------------------------------------------------
-getFirstGoal((Goal,RestTerm),Goal,RestTerm).
+getFirstGoal((Goal,RestTerm),NormalizedGoal,NormalizedRestTerm):-
+        normalizeGoals((Goal,RestTerm), (NormalizedGoal, NormalizedRestTerm)).
 getFirstGoal(Goal,Goal1,'true'):-
     \+getFGTest(Goal),
     Goal1=Goal.
@@ -48,7 +68,7 @@ getFirstGoal(Goal,Goal1,'true'):-
 getFGTest((_,_)).
 
 % ------------------------------------------------------------------------------
-% Testet ob ein Goal mit einer Programm-Klausel unifizierbar ist.
+% Tests if a goal is unifiable with a program clause.
 % ------------------------------------------------------------------------------
 test_goal(GoalTerm,Ref):-
     getFirstGoal(GoalTerm,Goal,_),
@@ -508,7 +528,7 @@ repvaru_atom(Term,[Name=_|Us],VarTerm):-
 repvaru_atom(Name,[Name=Value|_],Value).%:-write(Name),write(' = '),write(Value),write('<<<'),nl.
 
 % --------------------------------------------------------------------
-% Variablen im Goal umschreiben zu variable(Name,0).
+% Rewrite variables in the goal to variable(Name,0).
 % --------------------------------------------------------------------
 repvars0(Goal,VN,VL,VL1):-
     term_variables(Goal,VH),
@@ -522,7 +542,7 @@ sol0([V|Vs],[N|Ns],VL,VL1):-
     VL1=[V|VL2].
 
 % --------------------------------------------------------------------
-% Variablen in der Klausel umschreiben zu variable(Name,Index).
+% Rewrite variables in the clause to variable(Name,Index).
 % --------------------------------------------------------------------
 repvars(Clause,VN,VL,VL1):-
     term_variables(Clause,VH),
@@ -572,7 +592,7 @@ getcnt(Name,[V|_],Cnt):-
     variable(Name,Cnt)=V.
 
 % --------------------------------------------------------------------
-% Alle Variablen der Form variable('Name',Index) umschreiben in 'VARIABLE__NAME_INDEX'.
+% Rewrite all variables of the form variable('Name',Index) into 'VARIABLE__NAME_INDEX'.
 % --------------------------------------------------------------------
 trterm(T,_Q):-
     var(T).%,write('Fehler in trterm/2: Alle Variablen sollten ersetzt sein. ... Offenbar wurden die ungebundenen Variablen nicht unifiziert! '),nl.

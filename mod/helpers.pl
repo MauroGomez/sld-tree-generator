@@ -54,7 +54,7 @@ varlist([B|Bs],[L|Ls]):-
         varlist(Bs,Ls).
 
 % ------------------------------------------------------------------------------
-% Aufrufen aller Eintraege in einer Liste und Listen von Listen.
+% Calling all entries in a list and lists of lists.
 % ------------------------------------------------------------------------------
 solve([]).
 solve([[]]).
