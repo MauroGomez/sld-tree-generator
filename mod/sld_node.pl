@@ -49,7 +49,7 @@ listToGoals([X|Xs], (X,Gs)):-
 /**
  * Flatten goals nesting so you can get the first and rest of the goals
  * by doing NormGoals = (FirstGoal, RestGoals). 
- * /
+ **/
 normalizeGoals(Goals, NormGoals):-
     goalsToFlatList(Goals, GoalsFlatList),    
     listToGoals(GoalsFlatList, NormGoals).    
