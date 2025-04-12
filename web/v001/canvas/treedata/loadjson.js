@@ -137,7 +137,7 @@ function load_json_substitutions(s)
         var substitution=new theProcessingObject.Substitution(name,index,term);
         slist.push(substitution);
     }
-    return slist;
+    return slist.reverse();
 }
 
 function load_json_properties(p)

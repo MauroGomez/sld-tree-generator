@@ -165,7 +165,7 @@ print_tree3(tree(node(id(ID,_),goal(G),cl(CID,variant(V)),U,_,N),T),D,C):-
     CID>0,
     identi(0,D,ID),write('\\'),nl,
     identi(0,D,ID),write(' \\'),write('Klausel ('),write(CID),write('): '),write(V),nl,
-    identi(0,D,ID),write('  \\'),write('Unifikator: '),write(U),nl,
+    identi(0,D,ID),write('  \\'),write('Unifikator: '), reverse(U, UR), write(UR),nl,
     identi(0,D,ID),write('   \\'),write('Verwendete Variablen: '),write(N),nl,
     identi(0,D,ID),write('    \\'),nl,
     identi(0,D,ID),write('     ?- '),write(G),write('.'),
