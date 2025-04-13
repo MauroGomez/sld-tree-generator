@@ -38,11 +38,11 @@
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
   </head>
   <body bgcolor="#FFFFFF" color="#000000" style="color:#000000;background-color:#FFFFFF;">
-    <h1>Einstellungen:</h1>
+    <h1><script>document.write(parent.gttext["Einstellungen"]);</script></h1>
     <form name="form1">
       <p>
-        <b>Maximale Tiele des Baumes (bzw. Teilbaumes):</b><br>
-        Max. Tiefe (je Berechnungsschritt):
+        <b><script>document.write(parent.gttext["settings_max_depth"]);</script>:</b><br>
+        <script>document.write(parent.gttext["settings_max_depth_per_comp"]);</script>:
         <select name="depth" onChange="selectDepth()" style="font-family:arial;font-size:12pt;">
           <option value="1">1</option>
           <option value="2">2</option>
@@ -58,47 +58,46 @@
       </p>
       <hr>
       <p>
-        <b>Darstellung:</b><br>
-        Umrandung (und Knoten-Hintergrund) anzeigen.
+        <b><script>document.write(parent.gttext["settings_show_subs"]);</script>:</b><br>        
+        <script>document.write(parent.gttext["settings_show_borders"]);</script>.
         <select name="draw_goal_box" onChange="select_draw_goal_box()" style="font-family:arial;font-size:12pt;">
-          <option value="1">ein</option>
-          <option value="0">aus</option>
+          <option value="1"><script>document.write(parent.gttext["on"]);</script></option>
+          <option value="0"><script>document.write(parent.gttext["off"]);</script></option>
         </select>
-        <br><br>
-        Nummer der ausgewählten Klausel anzeigen.
+        <br><br>        
+        <script>document.write(parent.gttext["settings_show_selected_clause_number"]);</script>.
         <select name="draw_clauseid" onChange="select_draw_clauseid()" style="font-family:arial;font-size:12pt;">
-          <option value="1">ein</option>
-          <option value="0">aus</option>
+          <option value="1"><script>document.write(parent.gttext["on"]);</script></option>
+          <option value="0"><script>document.write(parent.gttext["off"]);</script></option>
+        </select>
+        <br><br>        
+        <script>document.write(parent.gttext["settings_color_scheme"]);</script>.
+        <select name="colorstyle" onChange="select_colorstyle()" style="font-family:arial;font-size:12pt;">          
+          <option value="0">standard</option>
+          <option value="1" selected>simple</option>
+          <option value="2">black</option>
+          <option value="3">black2</option>
         </select>
         <br><br>
-        Farbschema auswählen:
-        <select name="colorstyle" onChange="select_colorstyle()" style="font-family:arial;font-size:12pt;">
-          <option value="0">(select)</option>
-          <option value="1">standard</option>
-          <option value="2">simple</option>
-          <option value="3">black</option>
-          <option value="4">black2</option>
-        </select><br>(Setzt andere Einstellungen teilweise zurück.)
-        <br><br>
-        Substitution parallel zur Kante.
-        <select name="rotate_substext" onChange="select_rotate_substext()" style="font-family:arial;font-size:12pt;">
-          <option value="1">ein</option>
-          <option value="0">aus</option>
-        </select>
-        <br><br>
-        Substitution ausblenden.
+        <script>document.write(parent.gttext["settings_show_subs"]);</script>.
         <select name="draw_subst" onChange="select_draw_subst()" style="font-family:arial;font-size:12pt;">
-          <option value="1">ausgeblendet</option>
-          <option value="0">nicht ausgeblendet</option>
+          <option value="1"><script>document.write(parent.gttext["settings_show_subs_hide"]);</script></option>
+          <option value="0"><script>document.write(parent.gttext["settings_show_subs_show"]);</script></option>
         </select>
+        <br><br>
+        <script>document.write(parent.gttext["settings_show_subs_edge"]);</script>.
+        <select name="rotate_substext" onChange="select_rotate_substext()" style="font-family:arial;font-size:12pt;">
+          <option value="1"><script>document.write(parent.gttext["on"]);</script></option>
+          <option value="0"><script>document.write(parent.gttext["off"]);</script></option>
+        </select>                       
       </p>
       <hr>
       <p>
-        <b>Mouse Interaktion:</b><br>
-        Erlaube Knoten horizontal zu verschieben.
+        <b><script>document.write(parent.gttext["settings_mouse_interaction"]);</script>:</b><br>
+        <script>document.write(parent.gttext["settings_mouse_interaction_move"]);</script>.
         <select name="allow_xdrag" onChange="select_allow_xdrag()" style="font-family:arial;font-size:12pt;">
-          <option value="1">ein</option>
-          <option value="0">aus</option>
+          <option value="1"><script>document.write(parent.gttext["on"]);</script></option>
+          <option value="0"><script>document.write(parent.gttext["off"]);</script></option>
         </select>
       </p>
     </form>
@@ -135,19 +134,19 @@
       }
       function select_colorstyle()
       {
-          if(this.document.form1.colorstyle.value=="1")
+          if(this.document.form1.colorstyle.value=="0")
           {
               parent.globalGraphicParameter.set_standard();
           }
-          else if(this.document.form1.colorstyle.value=="2")
+          else if(this.document.form1.colorstyle.value=="1")
           {
               parent.globalGraphicParameter.set_simple();
           }
-          else if(this.document.form1.colorstyle.value=="3")
+          else if(this.document.form1.colorstyle.value=="2")
           {
               parent.globalGraphicParameter.set_black();
           }
-          else if(this.document.form1.colorstyle.value=="4")
+          else if(this.document.form1.colorstyle.value=="3")
           {
               parent.globalGraphicParameter.set_black2();
           }

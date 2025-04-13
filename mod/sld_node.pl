@@ -273,18 +273,18 @@ sld_node_call(Goal,Unifier,Result):-
 % ------------------------------------------------------------------------------
 sld_node_clause_intern(GoalTerm,Clause,VN,CID,VNames,Node,PID,ID,Depth,Request):-
     
-    % ungebundene Variablen einsetzen.
+    % insert unbound variables.
     to_unbounded_term(GoalTerm,GTU,GBc),                    
     to_unbounded_term(GoalTerm,GTU2,GBc2),                  
     
-    % Variablen umbenennen in Kausel.
+    % Rename variables in the clause.
     repvars(Clause,VN,VNames,VNamesNew),
     
-    % ungebundene Variablen einsetzen.
+    % insert unbound variables.
     to_unbounded_term(Clause,CU,CBc),CU=(HU:-BU),           
     to_unbounded_term(Clause,CU2,CBc2),CU2=(HU2:-_),        
 
-    % erstes Goal bestimmen.
+    % Determine the first goal.
     getFirstGoal(GTU,GUo,GRestU),
     getFirstGoal(GTU2,GU2o,_),
 

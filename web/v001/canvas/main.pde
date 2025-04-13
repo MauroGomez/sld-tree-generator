@@ -49,6 +49,7 @@ void setup()
     frameRate(30);
     globalGraphicParameter=new GlobalParameter();
     globalGraphicParameter.fontA=loadFont("arial");
+    globalGraphicParameter.set_simple();
 	global_DOM_main_canvas=document.getElementById("main_canvas");
     js_event_handling_setup();
     js_start();
