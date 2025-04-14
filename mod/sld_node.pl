@@ -120,9 +120,11 @@ goal_to_intGoal(Goal,GoalInt):-
 goal_to_intGoal(Goal,GoalInt):-
     Goal=..L,L=['='|As],
     L2=[intern_unify|As],GoalInt=..L2.
-goal_to_intGoal(Goal,GoalInt):-
-    Goal=..L,L=['\\='|As],
-    L2=[intern_not_unify|As],GoalInt=..L2.
+% This (kind of) works. It seems it doesn't like the '\\=' (escaped \=), and also doesn't like the intern_not_unify implementation.
+% See if this is pretty accurate, or just works if everything is instantiated.
+% goal_to_intGoal(Goal,GoalInt):-
+%     Goal=..L,L=['neq'|As],
+%     L2=[intern_not_eq|As],GoalInt=..L2.
 goal_to_intGoal(Goal,GoalInt):-
     Goal=..L,L=['\\+'|As],
     L2=[intern_not_unify|As],GoalInt=..L2.

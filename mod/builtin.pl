@@ -99,7 +99,10 @@ intern_not_unify(Term):-
     
 intern_not_unify(Term1,Term2):-
     Term1\=Term2.
-    
+
+% intern_not_eq(Term1, Term2):-
+%     Term1 @< Term2 ; Term2 @< Term1.
+
 intern_compare(Order,Term1,Term2):-
     compare(Order,Term1,Term2).
 
